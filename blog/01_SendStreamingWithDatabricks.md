@@ -3,10 +3,10 @@
 ## Create the Required Azure Resources
 
 1. Create an Azure Databricks Resource. Follow the instructions available [here](https://docs.microsoft.com/en-us/azure/azure-databricks/quickstart-create-databricks-workspace-portal).  
-1. In the newly created Azure Databricks workspace. Create a databricks cluster. Please note an cluster with a max of 3 VMs using Standard_D3_v2 machines will suffice. Please note the example cluster below.   
+1. In the newly created Azure Databricks workspace. Create a databricks cluster. Please note an cluster with a max of 3 VMs using Standard_D3_v2 machines will suffice. Please note the example cluster below.  
 ![](./imgs/01_databricks_cluster.png)
 
-1. Once your cluster is created you will need to import to libraries into your Azure Databricks workspace. On the Azure Databricks home page click "Import Library" (shown below).    
+1. Once your cluster is created you will need to import to libraries into your Azure Databricks workspace. On the Azure Databricks home page click "Import Library" (shown below).   
 ![](./imgs/02_import_lib.png)
 
 1. First select "Maven Coordinate" as your library source and import "azure-eventhubs-spark_2.11-2.3.6". Click "Create Library" and attach the library to your Databricks Cluster.  
