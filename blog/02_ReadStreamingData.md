@@ -34,7 +34,7 @@
     ```
 
 1. Please note that the data may be displayed as shown below. Alternative real-time visualizations can be created in databricks by clicking the plot button shown below.   
-<img src="./imgs/05_databricks_visual.png">
+![](./imgs/05_databricks_visual.png)
 
 1. I would then recommend clicking "Plot Options" and set the plot as shown below. Click "Apply" to see your visual upate in real-time!
-<img src="./imgs/06_customized_plot.png">
+![](./imgs/06_customized_plot.png)

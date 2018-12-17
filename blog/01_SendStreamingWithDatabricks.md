@@ -4,10 +4,10 @@
 
 1. Create an Azure Databricks Resource. Follow the instructions available [here](https://docs.microsoft.com/en-us/azure/azure-databricks/quickstart-create-databricks-workspace-portal).  
 1. In the newly created Azure Databricks workspace. Create a databricks cluster. Please note an cluster with a max of 3 VMs using Standard_D3_v2 machines will suffice. Please note the example cluster below.   
-<img src="./imgs/01_databricks_cluster.png" width="800">
+![](./imgs/01_databricks_cluster.png)
 
 1. Once your cluster is created you will need to import to libraries into your Azure Databricks workspace. On the Azure Databricks home page click "Import Library" (shown below).    
-<img src="./imgs/02_import_lib.png" width="600">
+![](./imgs/02_import_lib.png)
 
 1. First select "Maven Coordinate" as your library source and import "azure-eventhubs-spark_2.11-2.3.6". Click "Create Library" and attach the library to your Databricks Cluster.  
 
@@ -16,10 +16,10 @@
 1. Create an Azure Event Hub by following these [instructions](https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-create).  
  
 1. Create a Shared access policies for the event hub you just created. In the Azure portal navigate to your Event Hub.  
-<img src="./imgs/03_event_hub.png">
+![](./imgs/03_event_hub.png)
 
 1. Then click on "Shared access policies" and add two. One policy with "Listen" permissions, and one policy with "Send" permissions.  
-<img src="./imgs/04_event_hub_sas.png">
+![](./imgs/04_event_hub_sas.png)
 
 ## Write Code to Send Data to Event Hub 
 
