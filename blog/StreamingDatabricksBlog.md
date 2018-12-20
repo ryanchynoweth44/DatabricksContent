@@ -18,7 +18,6 @@ Azure Databricks is an optimized platform for Apache Spark, and enables organiza
 ## Benefits
 Streaming data archetecture is beneficial in most scenarios where new, dynamic data is generated on a continual basis. Any industry can benefit from data being available almost instantly from the time it was created. Most organizations will begin with simple solutions to collect log data, detect out-liers based off set (unintelligent) rules, or provide real-time reporting. However, they will evolve to become more sophisticated data processing pipelines that can detect fraudulant charges as they occur. The true advantage of streaming data is to perform advanced tasks, like machine learning, where over time we create a complex stream of events, where we apply advanced algorithms to take preventative action. 
 
-- https://aws.amazon.com/streaming-data/
 
 ## Challenges
 
