@@ -7,10 +7,10 @@ This example hopes to provide a demonstration on how to utilize [Azure Databrick
  - Basic Knowledge of Python and/or Scala
 
 ### Blog
-Check out the [blog](./blog/StreamingDatabricksBlog.md) I wrote to accompany this Streaming Machine Learning Walkthrough. It describes customer use cases and scenarios that fit streaming scenarios, then walks through parts 1 and 2 of our streaming demo with Databricks. 
+Check out the [blog](./blog/StreamingDatabricksBlog.md) I wrote to accompany this Streaming Machine Learning Walkthrough. It describes benefits and ways to implement a streaming data solution.  
 
 ### Demo Walkthrough
-The demo is currently broken into logic sections. Please complete in the following order:  
+The demo is broken into logic sections. Please complete in the following order:  
 1. [Send Data to Azure Event Hub (python)](./blog/walkthrough/01_SendStreamingWithDatabricks.md)
 1. [Read Data from Azure Event Hub (scala)](./blog/walkthrough/02_ReadStreamingData.md)
 1. [Train a Basic Machine Learning Model on Databricks (scala)](./blog/walkthrough/03_TrainMachineLearningModel.md)
