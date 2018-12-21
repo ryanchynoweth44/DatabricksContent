@@ -14,8 +14,8 @@ The demo is broken into logic sections. Please complete in the following order:
 1. [Send Data to Azure Event Hub (python)](./blog/walkthrough/01_SendStreamingWithDatabricks.md)
 1. [Read Data from Azure Event Hub (scala)](./blog/walkthrough/02_ReadStreamingData.md)
 1. [Train a Basic Machine Learning Model on Databricks (scala)](./blog/walkthrough/03_TrainMachineLearningModel.md)
-1. [Create new Send Data Notebook](./blog/walkthrough//04_ModifedStreamingData.md)
-1. [Make Streaming Predictions]()
+1. [Create new Send Data Notebook](./blog/walkthrough/04_ModifedStreamingData.md)
+1. [Make Streaming Predictions](./blog/walkthrough/05_MakeStreamingPredictions.md)
 
 ### Contact
 Please feel free to add to the walkthrough, or let me know of any confusing or broken steps. For any additional comments or questions email me at rchynoweth@10thmagnitude.com. 
