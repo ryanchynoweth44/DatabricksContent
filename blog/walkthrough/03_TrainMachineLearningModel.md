@@ -153,8 +153,8 @@ In order to make streaming predictions on data we will need to first train a mod
 1. Now we must save our model to storage in order to use it a later point in time. Note that we datetime our model so that we are able to save the models we train at any given time, and we save a 'latest' model allowing our streaming prediction script to easily pick up the most current model. 
     ```scala
     // format output paths
-    val latest_path = "/mnt/user/blob/rserverdata/public/nycmodels/latest/"
-    val date_path = "/mnt/user/blob/rserverdata/public/nycmodels/" + year_str + "/" + month_str + "/" + day_str + "/"
+    val latest_path = "/mnt/user/blob/" + account_name + "/" + container_name + "/nycmodels/latest/"
+    val date_path = "/mnt/user/blob/" + account_name + "/" + container_name + "/nycmodels/" + year_str + "/" + month_str + "/" + day_str + "/"
     // save models
     pipelineModel.write.overwrite().save(latest_path + "nyctaximodel.model")
     pipelineModel.write.overwrite().save(date_path + "nyctaximodel.model")

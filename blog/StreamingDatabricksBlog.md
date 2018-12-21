@@ -29,6 +29,10 @@ Streaming data architecture is beneficial in most scenarios where new, dynamic d
 
 Processing a data stream is extremely effective at generating quick insights, but it does not replace batch process. Typically organizations will implement both solutions in order to have the best of both worlds. Streaming data to react or anticipate events, and batch processing to derive additional insights after the fact. Batch processing can often require more compute and is ideal for when time or speed is not a priority. The great aspect is with Azure Databricks, companies are able to use the same infrastructure for both their workflows!   
 
+There are several advantages of streaming data solutions over batch processing: 
+- Batch processing data requires a system to allow data to build up so that it can be processed all at once. This often requires larger compute resources than streaming due to the size of data, which can be a hurdle for most organizations. Streaming solutions do require less compute but require machines to be running 100% of the time. 
+- 
+
 ## Example
 I recently created a simple walkthrough of how to implement a streaming data solution on Azure. Check out the walkthrough [here](https://github.com/ryanchynoweth44/StreamingExampleDatabricks). Please note that it requires the following:
 
