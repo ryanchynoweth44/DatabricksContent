@@ -1,7 +1,8 @@
-## Read Data From Event Hub
+# Read Data From Event Hub
 In this walkthrough we will read our streaming dataset and visualize the data. A copy of the script we implement can be found [here](../../code/ReadData.scala).
 
-1. Create a Scala notebook called "ReadData" inside your Azure Databricks workspace. 
+## Write code to Read Data
+1. Create a new Scala notebook called "ReadData" inside your Azure Databricks workspace. 
 
 1. Import the required libraries to read data. 
     ```scala
@@ -39,3 +40,7 @@ In this walkthrough we will read our streaming dataset and visualize the data. A
 
 1. I would then recommend clicking "Plot Options" and set the plot as shown below. Click "Apply" to see your visual upate in real-time!  
 ![](./imgs/06_customized_plot.png)
+
+1. You have now read data from an Azure Event Hub. Please move on to "[03_TrainMachineLearningModel.md](03_TrainMachineLearningModel.md)" to train a machine learning model!
+
+    **Please make sure shutdown the "SendData" Python notebook so that it is no longer sending data to the event hub**

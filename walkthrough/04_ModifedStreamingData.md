@@ -1,9 +1,12 @@
-## Create a new Send Data for Taxi Tip Predictions
+# Send Taxi Data to EventHub
 In this walkthrough we will create a new send data script to handle our Taxi machine learning solution. A copy of the script we implement can be found [here](../../code/SendTaxiData.py).
 
+**Please make sure you are no longer sending data to your event hub using the "SendData" Python notebook**
+
+## Create a new Send Data for Taxi Tip Predictions
 1. In Azure Databricks create a python notebook called "SendTaxiData". We will be generating and sending data to our event hub to make streaming machine learning predictions using the model we just trained.  
 
-1. Import your required libraries by pasting the following code into your "SendData" notebook. Run the cell by attaching the notebook to your cluster and "CTRL+Enter". 
+1. Import your required libraries by pasting the following code into your "SendTaxiData" notebook. Run the cell by attaching the notebook to your cluster and "CTRL+Enter". 
     ```python
     # import the required resources
     import sys

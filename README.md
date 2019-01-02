@@ -1,6 +1,6 @@
 ## Introduction
 
-This basic example hopes to provide a demonstration on how to utilize [Azure Databricks](https://docs.azuredatabricks.net/index.html) streaming capabilities using an [Azure Event Hub](https://docs.microsoft.com/en-us/azure/event-hubs/).  
+This repository aims to show an end to end demonstration of setting up a simple data pipeline, then adds on streaming machine learning predictions. Our sample machine learning dataset is the popular [New York City Taxi Tips](https://www.kaggle.com/dhimananubhav/predicting-taxi-tip-rates-in-nyc) dataset. We deomonstrate how to utilize [Azure Databricks'](https://docs.azuredatabricks.net/index.html) streaming capabilities using an [Azure Event Hub](https://docs.microsoft.com/en-us/azure/event-hubs/).  
 
 ### Prerequisites
  - [Azure Subscription](https://azure.microsoft.com/en-us/free/search/?&OCID=AID719825_SEM_KX8R84uR&lnkd=Bing_Azure_Brand&msclkid=6e706d7f2c60158ed7103168c2415255&dclid=CNmloKvCp98CFVJgwQodwMcKKQ)
@@ -18,4 +18,4 @@ The demo is broken into logic sections. Please complete in the following order:
 1. [Make Streaming Predictions](./walkthrough/05_MakeStreamingPredictions.md)
 
 ### Contact
-Please feel free to add and let me know of any confusing or broken steps. For any additional comments or questions email me at rchynoweth@10thmagnitude.com. 
+Please feel free to add to the walkthrough or let me know of any confusing/broken steps. For any additional comments or questions email me at rchynoweth@10thmagnitude.com. 

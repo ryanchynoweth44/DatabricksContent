@@ -41,7 +41,7 @@ val nyc_schema = StructType(Array(
 
 
 // read dataframe
-var df = spark.read.schema(nyc_schema).format("csv").option("header", "true").load("/mnt/user/blob/"+account_name+"/"+container_name+"/nyctaxitip.csv")
+var df = spark.read.schema(nyc_schema).format("csv").option("header", "true").load("/mnt/"+account_name+"/"+container_name+"/nyctaxitip.csv")
 df = df.withColumn("label", col("tipped"))
 
 
@@ -94,8 +94,8 @@ val month_str = java.time.LocalDate.now.getMonthValue.toString
 val day_str = java.time.LocalDate.now.getDayOfMonth.toString
 
 // set folder paths
-val latest_path = "/mnt/user/blob/"+account_name+"/"+container_name+"/nycmodels/latest/"
-val date_path = "/mnt/user/blob/"+account_name+"/"+container_name+"/nycmodels/" + year_str + "/" + month_str + "/" + day_str + "/"
+val latest_path = "/mnt/"+account_name+"/"+container_name+"/nycmodels/latest/"
+val date_path = "/mnt/"+account_name+"/"+container_name+"/nycmodels/" + year_str + "/" + month_str + "/" + day_str + "/"
 
 
 

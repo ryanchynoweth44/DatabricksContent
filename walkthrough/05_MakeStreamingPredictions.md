@@ -11,6 +11,11 @@ In this walkthrough we will use our machine learning model and make predictions 
     import org.apache.spark.ml.Pipeline
     import org.apache.spark.ml.PipelineModel
     ```
+1. Provide the names of your storage account and container. 
+    ```scala
+    val container_name = ""
+    val account_name = ""
+    ```
 
 1. Read data from the event hub. Please provide the connection string to the Event Hub Namespace and Event Hub Name. 
     ```scala
@@ -41,7 +46,7 @@ In this walkthrough we will use our machine learning model and make predictions 
     val account_name = ""
     val container_name = ""
     // load pipeline model
-    val pipelineModel = PipelineModel.load("/mnt/user/blob/"+account_name+"/"+container_name+"/nycmodels/latest/nyctaximodel.model")
+    val pipelineModel = PipelineModel.load("/mnt/"+account_name+"/"+container_name+"/nycmodels/latest/nyctaximodel.model")
     ```
 
 1. Connect to data stream and transform the data using the pipeline model. This code snippet will also display the data as it streams into the notebook.  
