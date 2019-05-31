@@ -18,4 +18,4 @@ The demo is broken into logic sections. Please complete in the following order:
 1. [Make Streaming Predictions](./walkthrough/05_MakeStreamingPredictions.md)
 
 ### Contact
-Please feel free to add to the walkthrough or let me know of any confusing/broken steps. For any additional comments or questions email me at rchynoweth@10thmagnitude.com. 
+Please feel free to add to the walkthrough or let me know of any confusing/broken steps. For any additional comments or questions email me at ryanachynoweth@gmail.com. 
