@@ -1,5 +1,5 @@
 # Make Streaming Predictions Using the PipelineModel
-In this walkthrough we will use our machine learning model and make predictions on a stream of data, then visualize that data in real-time. A copy of the script we implement can be found [here](../../code/StreamingTipPrediction.scala).
+In this walkthrough we will use our machine learning model and make predictions on a stream of data, then visualize that data in real-time. A copy of the script we implement can be found [here](../code/StreamingTipPrediction.scala).
 
 1. Import the libraries required for this notebook.
     ```scala

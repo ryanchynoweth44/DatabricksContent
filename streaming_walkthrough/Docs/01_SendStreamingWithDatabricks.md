@@ -1,6 +1,6 @@
 # Send Data To Event Hub
 
-In this walkthrough we will set up our environment, and write a sample notebook that sends dummy data to an Azure Event Hub. A copy of the script we implement can be found [here](../../code/SendData.py).
+In this walkthrough we will set up our environment, and write a sample notebook that sends dummy data to an Azure Event Hub. A copy of the script we implement can be found [here](../code/SendData.py).
 
 ## Create the Required Azure Resources
 

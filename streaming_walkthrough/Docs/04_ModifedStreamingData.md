@@ -1,5 +1,5 @@
 # Send Taxi Data to EventHub
-In this walkthrough we will create a new send data script to handle our Taxi machine learning solution. A copy of the script we implement can be found [here](../../code/SendTaxiData.py).
+In this walkthrough we will create a new send data script to handle our Taxi machine learning solution. A copy of the script we implement can be found [here](../code/SendTaxiData.py).
 
 **Please make sure you are no longer sending data to your event hub using the "SendData" Python notebook**
 

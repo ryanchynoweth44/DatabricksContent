@@ -13,11 +13,12 @@ Streaming machine learning is a great way at generating real time predictive ins
 ### Demo Walkthrough
 
 Stream Databricks Example: The demo is broken into logic sections. Please complete in the following order:  
-1. [Send Data to Azure Event Hub (python)](./walkthrough/01_SendStreamingWithDatabricks.md)
-1. [Read Data from Azure Event Hub (scala)](./walkthrough/02_ReadStreamingData.md)
-1. [Train a Basic Machine Learning Model on Databricks (scala)](./walkthrough/03_TrainMachineLearningModel.md)
-1. [Create new Send Data Notebook](./walkthrough/04_ModifedStreamingData.md)
-1. [Make Streaming Predictions](./walkthrough/05_MakeStreamingPredictions.md)
+1. [Send Data to Azure Event Hub (python)](./streaming_walkthrough/Docs/01_SendStreamingWithDatabricks.md)
+1. [Read Data from Azure Event Hub (scala)](./streaming_walkthrough/Docs/02_ReadStreamingData.md)
+1. [Train a Basic Machine Learning Model on Databricks (scala)](./streaming_walkthrough/Docs/03_TrainMachineLearningModel.md)
+1. [Create new Send Data Notebook](./streaming_walkthrough/Docs/04_ModifedStreamingData.md)
+1. [Make Streaming Predictions](./streaming_walkthrough/Docs/05_MakeStreamingPredictions.md)
+
 
 Databricks Delta - In Progress
 

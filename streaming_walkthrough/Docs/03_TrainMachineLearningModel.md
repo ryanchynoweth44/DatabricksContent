@@ -1,5 +1,5 @@
 # Train a Machine Learning Model
-In this walkthrough we will connect to a dataset, train a basic machine learning model, and save the model for later use. A copy of the script we implement can be found [here](../../code/TrainTaxiModel.scala).
+In this walkthrough we will connect to a dataset, train a basic machine learning model, and save the model for later use. A copy of the script we implement can be found [here](../code/TrainTaxiModel.scala).
 
 **Please make sure you are no longer sending data to your event hub using the "SendData" Python notebook**
 
