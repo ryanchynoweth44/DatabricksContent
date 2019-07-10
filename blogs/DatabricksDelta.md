@@ -19,4 +19,4 @@ Recently, I took a Databricks course, instead of the terms raw, staging, and sum
  - **Schema Evolution**: Easily change the schema of your data as it evolves over time.  
 
 
-As an Azure consultant, Databricks Delta is the big data solution I recommend to my clients. To get started developing a data lake solution with Azure Databricks and Databrick Delta check out the demo provided on my [GitHub](). We take advantage of traditional cloud storage by using an [Azure Data Lake Gen2](https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction) to serve as the storage layer on our Delta Lake. 
+As an Azure consultant, Databricks Delta is the big data solution I recommend to my clients. To get started developing a data lake solution with Azure Databricks and Databrick Delta check out the demo provided on my [GitHub](https://github.com/ryanchynoweth44/DatabricksContent/blob/master/delta_lake/Docs/01_CreateEnironment.md). We take advantage of traditional cloud storage by using an [Azure Data Lake Gen2](https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction) to serve as the storage layer on our Delta Lake. 

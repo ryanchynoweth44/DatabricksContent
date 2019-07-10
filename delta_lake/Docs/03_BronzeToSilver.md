@@ -35,7 +35,7 @@ One of my most favorite features of Databricks Delta and Delta Lake is the abili
     (streamDF
     .writeStream
     .format("delta")
-    .option("checkpointLocation", "/delta/checkpoints/iot/stream_data") #allows us to pick up where we left off if we lose connectivity
+    .option("checkpointLocation", "/delta/checkpoints/iot/silver/stream_data") #allows us to pick up where we left off if we lose connectivity
     .outputMode("append") # appends data to our table
     .start("/mnt/delta/silver/iot/stream_data") ) 
     ```
@@ -62,34 +62,31 @@ The most common choice is to chain your notebooks. Organization typically want t
 
 In this section of the demo we will go through each process listed above. Please note that the notebook and python file for this section of the demo only contains the chain notebook code.   
 
-### Stream Batch Bronze Data to Silver
-To stream data our bike share data from bronze to silver execute the following code.  
-```python
-bikeShareDF = spark.readStream.format('delta').load("/mnt/delta/bronze/bikeSharing/daily")
-
-(bikeShareDF
- .writeStream
- .format("delta")
- .option("checkpointLocation", "/delta/checkpoints/bikeSharing/daily") 
- .outputMode("append")
- .start("/mnt/delta/silver/bikeSharing/daily") )
-```
-
-
 ### Chain Notebooks
 First, lets build out the batch data pipeline from bronze to silver for our batch data. 
 
 1. Create a notebook called [`02b_BatchBronzeToSilver`](../code/02b_BatchBronzeToSilver.py).  
 
-1. Load, transform, and write our hourly data.
-```python
+1. Our Bike Sharing data is already pretty clean, so we will just do a simply transform where we create a new column before loading it into Silver. So let's load, transform, and write our hourly data.
+    ```python
+    from pyspark.sql.functions import col, when
 
-```
+    hourly_df = hourly_df.withColumn("Windy", when(col("windspeed") > 0, 1).otherwise(0))
+    hourly_df.write.format("delta").mode("overwrite").save("/mnt/delta/silver/bikeSharing/hourly")
+    ```
 
 1. Load, transform, and write our daily data.
-```python
+    ```python
+    daily_df = daily_df.withColumn("Windy", when(col("windspeed") > 0, 1).otherwise(0))
+    daily_df.write.format("delta").mode("overwrite").save("/mnt/delta/silver/bikeSharing/daily")
+    ```
 
-```
+    Often in Data Lakes we want more paritions on our data so that querying our data lake is more effecient. One common partition is to organize data by date so that developers can easily get the most current data. Below is how you can write your hourly dataframe to a data lake and organize it by date. After running the command below, use an Azure Storage Explorer to check out the file structure in your delta lake, you will notice the directory structure is `delta/silver/bikeSharing_partitioned/hourly/dteday=<date>`. 
+    ```python
+    hourly_df.write.format("delta").partitionBy("dteday").mode("append").save("/mnt/delta/silver/bikeSharing_partitioned/hourly")
+    ```
+
+
 
 
 When chaining notebooks we will have a "master" notebook that executes each notebook in our pipeline. 
@@ -124,3 +121,20 @@ This process is the same to schedule all jobs inside of a Databricks workspace, 
 
 1. Then provide the values to schedule the job as needed.  
 ![](./imgs/CreateJobStep2.png)
+
+
+### Stream Batch Bronze Data to Silver
+To stream data our bike share data from bronze to silver execute the following code.  
+```python
+bikeShareDF = spark.readStream.format('delta').load("/mnt/delta/bronze/bikeSharing/daily")
+
+(bikeShareDF
+ .writeStream
+ .format("delta")
+ .option("checkpointLocation", "/delta/checkpoints/bikeSharing/silver/daily") 
+ .outputMode("append")
+ .start("/mnt/delta/silver/bikeSharing/daily") )
+```
+
+
+Continue onto the [next portion of the demo](./04_MachineLearningWithDeltaLake.md) where we cover a few of the really cool features of Databricks Delta and Delta Lake!

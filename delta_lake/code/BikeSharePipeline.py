@@ -32,4 +32,4 @@ dbutils.notebook.run("02b_BatchBronzeToSilver", 0)
 
 # COMMAND ----------
 
-dbutils.notebook.run("02b_BatchSilver", 0)
+dbutils.notebook.run("04b_BatchSilverToGold", 0)

@@ -8,7 +8,7 @@ I acknowledge that not everyone has an Azure subscription available and may not 
     - [Databricks](https://docs.azuredatabricks.net/getting-started/try-databricks.html)
     - [Azure Data Lake Gen2](https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-quickstart-create-account). You can also use the default storage account that is created when deploying an Azure Databricks Workspace.  
 
-1. Create one File Systems in your ADLS Gen2 called **Delta**
+1. Create two File Systems in your ADLS Gen2 called **delta** and **machine-learning-models**
 
 1. [Create a service principle](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal) and client secret so that we can mount our Azure Data Lake Gen2 to our databricks cluster. Please make note of your Azure Tenant Id as well.     
 
@@ -63,5 +63,20 @@ In our case we will be using built in datasets that Databricks provides. We will
     print("Success.")
     ```
 
+1. We will also require a mount later in our demo to store our MLFlow output. Run the following code
+    ```python
+    try : 
+        dbutils.fs.mount(
+        source = "abfss://{}@{}.dfs.core.windows.net/".format('machine-learning-models', account_name),
+        mount_point = "/mnt/mlflow",
+        extra_configs = configs)
+        print("Storage Mounted.")
+    except Exception as e:
+        if "Directory already mounted" in str(e):
+            pass # Ignore error if already mounted.
+        else:
+            raise e
+    print("Success.")
+    ```
 
 Next we will set up our [data ingestion processes](./02_SetupDataIngestion.md), in Delta Lake fashion we will implement a batch process and a stream process.  

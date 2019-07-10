@@ -17,7 +17,7 @@ streamDF = (spark.readStream.format('delta').load("/mnt/delta/bronze/iot/stream_
 (streamDF
  .writeStream
  .format("delta")
- .option("checkpointLocation", "/delta/checkpoints/iot/stream_data") #allows us to pick up where we left off if we lose connectivity
+ .option("checkpointLocation", "/delta/checkpoints/iot/silver/stream_data") #allows us to pick up where we left off if we lose connectivity
  .outputMode("append")
  .start("/mnt/delta/silver/iot/stream_data") )
 
