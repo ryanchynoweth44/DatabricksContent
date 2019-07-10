@@ -13,7 +13,7 @@ Streaming data process and predictive analytics are a match made in heaven when 
 
 ## Demos
 
-Stream Databricks Example: The demo is broken into logic sections. Please complete in the following order:  
+Stream Databricks Example - The demo is broken into logic sections. Please complete in the following order:  
 1. [Send Data to Azure Event Hub (python)](./streaming_walkthrough/Docs/01_SendStreamingWithDatabricks.md)
 1. [Read Data from Azure Event Hub (scala)](./streaming_walkthrough/Docs/02_ReadStreamingData.md)
 1. [Train a Basic Machine Learning Model on Databricks (scala)](./streaming_walkthrough/Docs/03_TrainMachineLearningModel.md)
@@ -21,7 +21,14 @@ Stream Databricks Example: The demo is broken into logic sections. Please comple
 1. [Make Streaming Predictions](./streaming_walkthrough/Docs/05_MakeStreamingPredictions.md)
 
 
-Databricks Delta - In Progress
+Databricks Delta - The demo is broken into logic sections. Please complete in the following order:  
+1. [Setup Environment](./delta_lake/Docs/01_CreateEnironment.md)
+1. [Data Ingestion](./delta_lake/Docs/02_SetupDataIngestion.md)
+1. [Bronze Data to Silver Data](./delta_lake/Docs/03_BronzeToSilver.md)
+1. [A quick ML Model](./delta_lake/Docs/04_MachineLearningWithDeltaLake.md)
+1. [Silver Data To Gold Data](./delta_lake/Docs/05_SilverToGold.md)
+1. [A Few Cool Features of Delta](./delta_lake/Docs/06_DeltaFeatures.md)
+1. [Summary](./delta_lake/Docs/07_Summary.md)
 
 ## Contact
 Please feel free to recommend demos or contact me if there are any confusing/broken steps. For any additional comments or questions email me at ryanachynoweth@gmail.com. 
