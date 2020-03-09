@@ -31,5 +31,10 @@ Databricks Delta - The demo is broken into logic sections. Please complete in th
 1. [A Few Cool Features of Delta](./delta_lake/Docs/06_DeltaFeatures.md)
 1. [Summary](./delta_lake/Docs/07_Summary.md)
 
+
+Programmatically Generate a Databricks Access Token: using Service Principals to Automate the creation of a Databricks Access Token
+1. [README](./generate_access_token)
+1. [Reference Blog](https://cloudarchitected.com/2020/01/using-azure-ad-with-the-azure-databricks-api/)
+
 ## Contact
 Please feel free to recommend demos or contact me if there are any confusing/broken steps. For any additional comments or questions email me at ryanachynoweth@gmail.com. 
