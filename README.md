@@ -49,7 +49,7 @@ Using Service Principals to Automate the creation of a Databricks Access Token
 This is a lie. Delta Lake does not actually support views but it is a common ask from many clients. Whether views are desired to help enforce row-level security or provide different views of data here are a few ways to get it done.
 1. [README](./delta_lake_views)  
 1. [Hive Views with Delta Lake](./delta_lake_views/HiveViews.py)
-1. [Delta Lake "Views"]()
+1. [Delta Lake "Views"](./delta_lake_views/DeltaLakeTablesAsViews.py)
 
 
 ## Contact

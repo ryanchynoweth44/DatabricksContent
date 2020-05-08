@@ -15,7 +15,85 @@ If you would like to follow along, check out the [Databricks Community Cloud](ht
 
 ## Implementing "Views" as Delta Tables
 
-TO BE COMPLETED IN THE NEAR FUTURE
+In order to truly create a "Delta View" on a delta lake, developers are required to create ETL processes that continuously or on a scheduled cadence update a delta table. Within a data lake we are able to apply granular permissions on the lake to allow specific users access to certain directories. By creating additional delta tables to act as views we are able to satisfy several needs that typical sql views satisfy. The drawback with this implementation is that these "views" require a refresh. This can easily be avoided by taking advantage of stream processing which is supported by Apache Delta, but may be more costly than many clients want to pay. 
+
+The following steps are required to implement a successful "view" in delta lake. 
+1. Create Delta table
+1. Create Delta "View"
+1. Create streaming notebook to keep the "view" up to date
+
+
+In most cases, data lakes are structured to branch directories based off a single top level directory which we will call `datalake`. Within the data lake directory we segment our data based on the level of transformations applied to the dataset. I like to call them bronze, silver, and gold but they are commonly referred as raw, curated, and enriched. Below each of the second directories we will organize our data by source and data type (tables). 
+
+In our case views will be created in the enhanced area of our data lake. Therefore, we may have a gold sample directory structure as follows `datalake/gold/DataSourceOne/Tables` and `datalake/gold/DataSourceOne/Views`
+
+
+To start we will need to generate data and create our source Delta table. 
+```python
+# import pandas for easy data creation
+import pandas as pd
+from pyspark.sql.functions import col
+# create a spark dataframe
+df = pd.DataFrame([{"ColumnA": 1, "ColumnB": 3}, {"ColumnA": 11, "ColumnB": 31}])
+df = spark.createDataFrame(df)
+display(df)
+# create delta table
+df.write.format("delta").mode("overwrite").save("/mnt/deltalake/gold/demosource/Tables/demo_delta_table")
+```
+
+Next let's create our intial "View" of the data. We will apply a simply filter function so that the two Delta tables are different. 
+```python
+# create our delta "view"
+df.filter(col("ColumnA") >= 5).write.format("delta").mode("overwrite").save("/mnt/deltalake/gold/demosource/Views/demo_delta_view")
+```
+
+Since the "view" is actually a Delta table we need to make sure it is getting updated with new data. We could schedule a cron job to simply insert new records or overwrite the job entirely.   
+```python
+# overwrite our "view" on a schedule
+df.filter(col("ColumnA") >= 5).write.format("delta").mode("overwrite").save("/mnt/deltalake/gold/demosource/Views/demo_delta_view")
+
+# append only new records
+changesOnlyDf.filter(col("ColumnA") >= 5).write.format("delta").mode("append").save("/mnt/deltalake/gold/demosource/Views/demo_delta_view")
+```
+
+My preferred implementation uses Delta streaming to continuously update our table. First you need to initialize a readStream so that we can load our source Delta table. Then we will start a writeStream so that we are always updating our Delta "view". 
+```python
+streamDF = spark.readStream.format('delta').load("/mnt/deltalake/gold/demosource/Tables/demo_delta_table")
+# display(streamDF) # - use this command to see the dataframe before we make any updates. 
+```
+
+Next we need to start a writeStream using the readStream we just created. Notice that our read stream is reading all records in our source Delta table, therefore, we must perform our filter in our writeStream command. 
+```python
+(streamDF.filter(col("ColumnA") >= 5)
+.writeStream
+.format("delta")
+.option("checkpointLocation", "/delta/checkpoints/view_demo/streaming_demo_view") #allows us to pick up where we left off if we lose connectivity
+.outputMode("append") # appends data to our table
+.start("/mnt/deltalake/gold/demosource/Views/demo_delta_view") ) 
+```
+
+
+Now we can insert some new data into our source Delta table. Which will then automatically pick up the new data, filter, and append to our "view".  
+```python
+df = pd.DataFrame([{"ColumnA": 1, "ColumnB": 30}, {"ColumnA": 55, "ColumnB": 80}])
+df = spark.createDataFrame(df)
+df.write.format("delta").mode("append").save("/mnt/deltalake/gold/demosource/Tables/demo_delta_table")
+```
+
+Then we can view our Delta "view" contents. 
+```python
+display(spark.read.format("delta").load("/mnt/deltalake/gold/demosource/Views/demo_delta_view"))
+```
+Output: 
+<br>
+![](/delta_lake_views/imgs/05_display_stream.png) 
+
+
+
+Overall, this is a very clean way to implement views within a Data Lake enabling users to query directly without having to go to another system for different data views. However, one drawback for this implementation is that we are duplicating data stored in the data lake. 
+
+In the next example, I walk through a process that avoids this issue but has drawbacks as well. 
+
 
 
 ## Creating External Hive Tables and Hive Views
