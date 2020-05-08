@@ -6,20 +6,11 @@ PLEASE NOTE THAT THIS REPOSITORY IS NOT ACTIVELY MAINTAINED, BUT WILL BE UPDATED
 
 If you would like to follow along, check out the [Databricks Community Cloud](https://community.cloud.databricks.com/).
 
-## Blogs
-
-### Data Streaming and Machine Learning
-Streaming data process and predictive analytics are a match made in heaven when pursuing real-time predictive insights for your organization. In an effort to show an end to end demonstration of setting up a simple streaming data pipeline and adding a machine learning solution on top of it we will use the popular [New York City Taxi Tips](https://www.kaggle.com/dhimananubhav/predicting-taxi-tip-rates-in-nyc) dataset. We demonstrate how to utilize [Azure Databricks'](https://docs.azuredatabricks.net/index.html) streaming capabilities using an [Azure Event Hub](https://docs.microsoft.com/en-us/azure/event-hubs/). Check out my [Streaming Databricks Blog Post](https://github.com/ryanchynoweth44/DatabricksContent/blob/master/blogs/StreamingDatabricksBlog.md)! 
-
-### Quick Review of Databricks Delta
-Databricks Delta allows organizations to build scalable enterprise level data lake solutions with the ability to process big data as batches and streams. We demonstrate some of the basic capabilities and generally processes of Delta Lakes. Check out the [Quick Review: Databricks Delta](https://github.com/ryanchynoweth44/DatabricksContent/blob/master/blogs/DatabricksDelta.md) blog post. 
-
-
-
 ## Demos
 
 ### Stream Databricks Example
-The demo is broken into logic sections. Please complete in the following order:  
+The demo is broken into logic sections using the [New York City Taxi Tips](https://www.kaggle.com/dhimananubhav/predicting-taxi-tip-rates-in-nyc) dataset. Please complete in the following order:  
+1. [Blog](https://github.com/ryanchynoweth44/DatabricksContent/blob/master/blogs/StreamingDatabricksBlog.md)
 1. [Send Data to Azure Event Hub (python)](./streaming_walkthrough/Docs/01_SendStreamingWithDatabricks.md)
 1. [Read Data from Azure Event Hub (scala)](./streaming_walkthrough/Docs/02_ReadStreamingData.md)
 1. [Train a Basic Machine Learning Model on Databricks (scala)](./streaming_walkthrough/Docs/03_TrainMachineLearningModel.md)
@@ -29,6 +20,7 @@ The demo is broken into logic sections. Please complete in the following order:
 
 ### Databricks Delta 
 The demo is broken into logic sections. Please complete in the following order:  
+1. [Blog](https://github.com/ryanchynoweth44/DatabricksContent/blob/master/blogs/DatabricksDelta.md)
 1. [Setup Environment](./delta_lake/Docs/01_CreateEnironment.md)
 1. [Data Ingestion](./delta_lake/Docs/02_SetupDataIngestion.md)
 1. [Bronze Data to Silver Data](./delta_lake/Docs/03_BronzeToSilver.md)
