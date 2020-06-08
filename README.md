@@ -2,8 +2,6 @@
 
 This repository aims to provide various Databricks tutorials and demos.  
 
-PLEASE NOTE THAT THIS REPOSITORY IS NOT ACTIVELY MAINTAINED, BUT WILL BE UPDATED AS ISSUES ARE CREATED. 
-
 If you would like to follow along, check out the [Databricks Community Cloud](https://community.cloud.databricks.com/).
 
 ## Demos
