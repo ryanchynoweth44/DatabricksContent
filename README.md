@@ -42,5 +42,11 @@ This is a lie. Delta Lake does not actually support views but it is a common ask
 1. [Delta Lake "Views"](./delta_lake_views/DeltaLakeTablesAsViews.py)
 
 
+### Delta Lake CDC Operations  
+Batch processing changes within a delta lake is common practice and easy to do. We provide a few examples on how to use the Delta Lake time travel capabilities to get different views on how a table has changed between two versions. 
+1. [README](./delta_lake_cdc)
+1. [Python Script](./delta_lake_cdc/cdc_example_python.py)
+1. [Scala Script](./delta_lake_cdc/cdc_example_scala.scala)
+
 ## Contact
 Please feel free to recommend demos or contact me if there are any confusing/broken steps. For any additional comments or questions email me at ryanachynoweth@gmail.com. 
