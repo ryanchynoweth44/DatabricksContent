@@ -39,7 +39,8 @@ initDF = spark.createDataFrame(initDF)
 initDF.write.format("delta").mode("overwrite").option("schemaOverwrite", "true").save("/tmp/cdc_demo/delta_table_cdc")
 ```
 
-In this example we will delete two rows, insert one row, and update one row. To make things simple, we will create another dataframe and simply overwrite our delta table.  
+In this example we will delete two rows, insert one row, and update one row. To make things simple, we will create another dataframe and simply overwrite our delta table. We are deleting the rows that contain "dog" and "cat, we are updating the row that contains "horse", and inserting a row with "john".  
+
 ```python
 updateDF = pd.DataFrame([[18, "bat"],
   [6, "mouse"],
