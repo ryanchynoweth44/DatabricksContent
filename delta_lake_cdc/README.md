@@ -75,7 +75,7 @@ To get the **inserts and updates** run the following command:
 ```python
 display(currentDeltaTableDF.subtract(olderDeltaTableDF))
 ```
-![](./imgs/cdc_three.png) 
+![](./imgs/cdc_three.PNG) 
 
 
 
@@ -84,11 +84,11 @@ To get the **deletes and updates** run the following command:
 ```python
 display(olderDeltaTableDF.subtract(currentDeltaTableDF))
 ```
-![](./imgs/cdc_four.png) 
+![](./imgs/cdc_four.PNG) 
 
 
 To get only the **deletes** run the following command:
 ```python
 display(olderDeltaTableDF.join(currentDeltaTableDF, olderDeltaTableDF.word == currentDeltaTableDF.word, "leftanti"))
 ```
-![](./imgs/cdc_five.png) 
+![](./imgs/cdc_five.PNG) 
