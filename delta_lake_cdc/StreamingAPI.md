@@ -124,3 +124,6 @@ Check out the gold data to see that it has been updated accordingly.
 ```scala
 display(spark.read.format("delta").load(gold_data))
 ```
+
+
+
