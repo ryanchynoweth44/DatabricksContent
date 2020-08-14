@@ -110,7 +110,7 @@ for (i <- 0 to df2.columns.length-1){
 
 var t1 = System.nanoTime
 df2 = df2.withColumn("delta_partition", abs(hash(df2.columns.map(col(_)): _*))%numPartitions) // create the column partition
-df2.partitionBy("delta_partition").write.format("delta").mode("overwrite").save(partitionedDeltaTablePath)
+df2.write.format("delta").partitionBy("delta_partition").mode("overwrite").save(partitionedDeltaTablePath)
 var duration = (System.nanoTime - t1) / 1e9d
 
 // COMMAND ----------
