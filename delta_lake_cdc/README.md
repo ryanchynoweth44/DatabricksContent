@@ -47,9 +47,9 @@ Quickly, we write our data to a delta table. Please make note of the following c
 df2 = df2.withColumn("delta_partition", abs(hash(df2.columns.map(col(_)): _*))%numPartitions) // create the column partition
 ```
 
-This peice of code will hash the primary keys and using a modulo operator. This assigns each one into a specific partition allowing us to always insert, update, or delete a row based off the keys and limiting which partitions are needed to scan. By limiting the partitions we are able to make operations run faster by skipping datasets. 
+This peice of code will hash the primary keys and using a modulo operator. This assigns each one into a specific partition allowing us to always insert, update, or delete a row based off the keys and limiting which partitions are needed to scan. By limiting the partitions we are able to make operations run faster limiting the number of files we need to read for our merge command.   
 
-![](imgs/merge_six.jpg)
+![](imgs/merge_nine.png)
 
 We will write our dataset to our delta table, then in order to know which partitions we are operating on we must select the distinct partitions from our source dataframe of 50,000 rows.  
 
