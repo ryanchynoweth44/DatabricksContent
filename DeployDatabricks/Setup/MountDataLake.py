@@ -12,11 +12,12 @@
 # COMMAND ----------
 
 # required variables
-account_name = dbutils.secrets.get("","")
+scope_name = "AdminScope"
+storage_account_name = dbutils.secrets.get(scope_name,"storageAccountName")
 containers = ['bronze', 'silver', 'gold']
-client_id = dbutils.secrets.get("", "")
-client_secret = dbutils.secrets.get("", "")
-tenant_id = dbutils.secrets.get("", "")
+client_id = dbutils.secrets.get(scope_name, "client_id")
+client_secret = dbutils.secrets.get(scope_name, "client_secret")
+tenant_id = dbutils.secrets.get(scope_name, "tenant_id")
 
 # COMMAND ----------
 
@@ -31,12 +32,16 @@ configs = {"fs.azure.account.auth.type": "OAuth",
 for c in containers:
   try : 
       dbutils.fs.mount(
-      source = "abfss://{}@{}.dfs.core.windows.net/".format(c, account_name),
-      mount_point = "/mnt/delta",
+      source = "abfss://{}@{}.dfs.core.windows.net/".format(c, storage_account_name),
+      mount_point = "/mnt/datalake/{}/{}".format(storage_account_name, c),
       extra_configs = configs)
-      print("Storage Mounted.")
+      print("{} Container Mounted.".format(c))
   except Exception as e:
       if "Directory already mounted" in str(e):
           pass # Ignore error if already mounted.
       else:
           raise e
+
+# COMMAND ----------
+
+

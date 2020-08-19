@@ -1,11 +1,11 @@
 # Databricks Deployment 
 
-<WORK IN PROGRESS  ---- FIRST VERSION IS NOT COMPLETE>
-
 
 In all of my Databricks and Data Lake projects there are common themes and functions that are consistent. In an effort to streamline my own projects and provide assistance to clients I am creating a repository of notebooks and scripts that can be used to configure, maintain, and leverage Azure Databricks at an enterprise level. 
 
 The notebooks that are currently available are only the beginning and I will be adding more to them over time. 
+
+The main feature at this time is the automated deployment and configuration of a Databricks workspace with ADLS Gen2. 
 
 
 There are a number of key **assumptions** that I will make:
@@ -41,9 +41,9 @@ These notebooks aim to provide a jumpstart to configuring a Databricks workspace
 
 ### Setup Notebooks
 
-- [InfrastrucureDeployment]()
+- [InfrastrucureDeployment](DeployDatabricks/Setup/InfrastructureDeploy.py)
     - Python script to deploy minimum required infrastructure. 
-    - Please reference the [Setup Readme]() for more information.
+    - Please reference the [Setup Readme](DeployDatabricks/Setup/README.md) for more information.
 
 - [CreateSecret.py](DeployDatabricks/Setup/CreateSecret.py)
     - Assumes that you have created a Databricks scope called "AdminScope" and a secret in that scope called "DatabricksToken". This requirement is to be eliminated once roadmap item 1 is implemented. 
@@ -55,8 +55,4 @@ These notebooks aim to provide a jumpstart to configuring a Databricks workspace
 - [MountDataLake.py](DeployDatabricks/Setup/MountDataLake.py)
     - Mounts all three containers highlighted in our assumptions above. 
     - Assumes secrets are stored in a Databricks secret scope, which will be eliminated with item 1 on the roadmap being created.  
-
-### Admin
-Note - some of these notebooks have been altered from Databricks employees - references provided upon request.  
-
 
