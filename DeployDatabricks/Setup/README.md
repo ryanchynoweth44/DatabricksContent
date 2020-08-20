@@ -43,16 +43,20 @@ The `config_path` is the path to a json file that has the structure below. This 
 {
     "region": "westus",
     "subscription_id": "11111111-1111-1111-1111-111111111111",
-    "client_id": "11111111-1111-1111-1111-111111111111", // service principal
-    "client_secret": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", // service principal secret
+    "client_id": "11111111-1111-1111-1111-111111111111", 
+    "client_secret": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 
     "tenant_id": "11111111-1111-1111-1111-111111111111",
     "resource_group_name": "rg1",
     "databricks_workspace_name": "dbrx1",
-    "databricks_sku": "premium", // recommend sku is premium
-    "storageAccountName": "adls2", //must be all lowercase with only numbers and letters
-    "scopeName": "AdminScope" // provided notebooks expect the scope to be 'AdminScope'
+    "databricks_sku": "premium", 
+    "storageAccountName": "adls2", 
+    "scopeName": "AdminScope" 
 
 }
 ```
+Please note the following:
+- The notebooks provided will work out of the box if the scope name remains "AdminScope"
+- The storage account name must follow the naming conventions of azure storage
+- I recommend a databricks_sku of "premium" 
 
 
