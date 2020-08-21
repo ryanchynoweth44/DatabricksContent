@@ -46,7 +46,7 @@ These notebooks aim to provide a jumpstart to configuring a Databricks workspace
     - Please reference the [Setup Readme](Setup/README.md) for more information.
 
 - [CreateSecret.py](Setup/CreateSecret.py)
-    - Assumes that you have created a Databricks scope called "AdminScope" and a secret in that scope called "DatabricksToken". This requirement is to be eliminated once roadmap item 1 is implemented. 
+    - Assumes secrets added during the infrastructure deployment exist. 
     - Given a secret scope, secret key, and secret value it will create the scope if needed and will add the secret to the scope. 
 
 - [CreateUtilityDatabase.py](Setup/CreateUtilityDatabase.py)
@@ -54,5 +54,5 @@ These notebooks aim to provide a jumpstart to configuring a Databricks workspace
 
 - [MountDataLake.py](Setup/MountDataLake.py)
     - Mounts all three containers highlighted in our assumptions above. 
-    - Assumes secrets are stored in a Databricks secret scope, which will be eliminated with item 1 on the roadmap being created.  
+    - Assumes secrets added during the infrastructure deployment exist.
 
