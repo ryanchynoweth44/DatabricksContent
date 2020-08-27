@@ -34,27 +34,25 @@ Since our silver and gold layers are using Databricks Delta they will follow a s
 `/mnt/datalake/<storage account name>/silver/<database name>/<schema name>/<table name>`
 
 
+Please note that all Delta tables will be created as external Hive tables in the following format: `<database_name>__<schema name>.<table name> `. This will allow users to easily access data via the Databricks Database and the file system.  
+
 ## Notebooks Available
 
 These notebooks aim to provide a jumpstart to configuring a Databricks workspace for ETL/ELT processing, and for continued management of a workspace. 
 
 
+Notebooks are organized into different folders depending on their purpose in the solution. 
+- [Admin:](Admin) a collection of notebooks purposed for managing and optimizing your Databricks and Delta Lake solution. This may include capturing data from the Databricks REST APIs or executing regular tasks to manage your solution. 
+- [Setup:](Setup) a collection of notebooks and scripts purposed for automating the deployment and configuration of a Databricks workspace and Azure Data Lake Storage Gen2. 
+
+### Admin Notebooks
+
+The following notebooks can be *manually* imported into a workspace and executed. 
+- [CreateSecret.py](Admin/CreateSecret.py): a notebook that will put a secret in a secret scope. 
+- [CreateUtilityDatabase.py](Admin/CreateUtilityDatabase.py): a notebook that creates a utility_database in the hive metastore. This database will be used to capture various information about a Databricks workspace i.e. job run data. 
+
 ### Setup Notebooks
 
-- [InfrastrucureDeployment](Setup/InfrastructureDeploy.py)
-    - Python script to deploy minimum required infrastructure. 
-    - Please reference the [Setup Readme](Setup/README.md) for more information.
+Please reference the [Setup README](Setup). 
 
-- [Mount Data Lake](Setup/RunMountDataLake.py)
-
-- [CreateSecret.py](Setup/CreateSecret.py)
-    - Assumes secrets added during the infrastructure deployment exist. 
-    - Given a secret scope, secret key, and secret value it will create the scope if needed and will add the secret to the scope. 
-
-- [CreateUtilityDatabase.py](Setup/CreateUtilityDatabase.py)
-    - Creates a utility database that we will leverage for data collection processes. 
-
-- [MountDataLake.py](Setup/MountDataLake.py)
-    - Mounts all three containers highlighted in our assumptions above. 
-    - Assumes secrets added during the infrastructure deployment exist.
 

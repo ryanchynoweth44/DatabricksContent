@@ -6,6 +6,13 @@ If you would like to follow along, check out the [Databricks Community Cloud](ht
 
 In an effort to streamline my own projects and assist with deploying Databricks and Data Lakes faster, I am compiling a number of resources that will range from deployment scripts, data collection, and administrative tasks to keep a clean data lake. In my [DeployDatabricks](DeployDatabricks) directory you will discover a set of notebooks and scripts to help you get started. I make several key assumptions on how organizations should structure a data lake, but the assumptions are derived from patterns accross projects and clients. The overall goal is a collection of resources to not only automatically configure a data lake but to manage and monitor you data lake and Databricks jobs. 
 
+## Databricks Deployment
+
+In all of my Databricks and Data Lake projects there are common themes and functions that are consistent. In an effort to streamline my own projects and provide assistance to clients I am creating a repository of notebooks and scripts that can be used to configure, maintain, and leverage Azure Databricks at an enterprise level. 
+
+For assistance in automating you Databricks deployment and adoption reference my [DeployDatabricks](DeployDatabricks) directory.  
+
+
 
 ## Demos
 

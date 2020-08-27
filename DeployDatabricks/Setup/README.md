@@ -8,7 +8,7 @@ pip install azure.mgmt.storage
 ```
 
 
-At the top of the [deployment script](DeployDatabricks/Setup/InfrastructureDeploy.py) you will need to provide the following values. Please note that this can be switched to using either command line arguments or environment variables. 
+At the top of the [deployment script](InfrastructureDeploy.py) you will need to provide the following values. Please note that this can be switched to using either command line arguments or environment variables. 
 ```python
 config_path = "DeployDatabricks/Setup/setup_config.json"
 databricks_arm_path = "DeployDatabricks/Setup/databricks_arm.json"
@@ -44,7 +44,7 @@ Please note the following:
 
 Please execute the following steps in order to deploy a Databricks environment. 
 
-1. Run the [Infrastructure Deployment Script](DeployDatabricks/Setup/InfrastructureDeploy.py) which will complete the following:
+1. Run the [Infrastructure Deployment Script](InfrastructureDeploy.py) which will complete the following:
     - Create or use existing resource group
     - Create a Databricks workspace
     - Create an ADLS Gen2 storage account
@@ -58,8 +58,8 @@ Please execute the following steps in order to deploy a Databricks environment.
         - storageAccountName 
         - databricksToken
 
-1. Execute the [Run Mount Data Lake](DeployDatabricks\Setup\RunMountDataLake.py) script which will complete the following:
-    - Imports the [`MountDataLake.py`](DeployDatabricks\Setup\MountDataLake.py) notebook to the Setup directory in the workspace root
+1. Execute the [Run Mount Data Lake](RunMountDataLake.py) script which will complete the following:
+    - Imports the [`MountDataLake.py`](MountDataLake.py) notebook to the Setup directory in the workspace root
     - Creates a small cluster
         - Saves cluster id to config file
     - Executes MountDataLake notebook to mount our three storage containers: `bronze`, `silver`, `gold`
