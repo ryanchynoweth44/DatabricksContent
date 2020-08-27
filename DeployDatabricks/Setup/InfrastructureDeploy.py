@@ -193,7 +193,7 @@ dict_content = json.loads(data.content.decode('utf-8'))
 token = dict_content.get('token_value')
 print("This is the databricks token: {}".format(token))
 
-
+print("Saving Token to config file. ")
 environment_variables['databricksToken'] = token
 # Save Databricks Token to Config File
 with open(config_path, 'w') as f:

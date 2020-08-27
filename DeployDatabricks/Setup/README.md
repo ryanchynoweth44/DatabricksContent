@@ -1,28 +1,5 @@
 # Setup
 
-
-## Deployment
-
-
-1. Run the [Infrastructure Deployment Script](DeployDatabricks/Setup/InfrastructureDeploy.py) which will complete the following:
-    - Create or use existing resource group
-    - Create a Databricks workspace
-    - Create an ADLS Gen2 storage account
-    - Create bronze, silver, and gold file systems
-    - Added the following secrets to the `AdminScope` Databricks scope.
-        - subscription_id 
-        - client_id 
-        - client_secret 
-        - tenant_id 
-        - resource_group_name 
-        - storageAccountName 
-        - databricksToken
-
-    - Importing the `MountDataLake.py` notebook and executing will automatically mount the containers to your databricks workspace. 
-    - Note that this script will save your Databricks Token to the configuration file for future deployment processes
-
-
-
 The following instructions use a Python 3.7 Anaconda environment. Please pip install the following requirements:
 ```
 pip install azure-mgmt-resource==3.0.0
@@ -61,4 +38,29 @@ Please note the following:
 - The storage account name must follow the naming conventions of azure storage
 - I recommend a databricks_sku of "premium" 
 
+
+
+## Deployment
+
+Please execute the following steps in order to deploy a Databricks environment. 
+
+1. Run the [Infrastructure Deployment Script](DeployDatabricks/Setup/InfrastructureDeploy.py) which will complete the following:
+    - Create or use existing resource group
+    - Create a Databricks workspace
+    - Create an ADLS Gen2 storage account
+    - Create bronze, silver, and gold file systems
+    - Added the following secrets to the `AdminScope` Databricks scope.
+        - subscription_id 
+        - client_id 
+        - client_secret 
+        - tenant_id 
+        - resource_group_name 
+        - storageAccountName 
+        - databricksToken
+
+1. Execute the [Run Mount Data Lake](DeployDatabricks\Setup\RunMountDataLake.py) script which will complete the following:
+    - Imports the [`MountDataLake.py`](DeployDatabricks\Setup\MountDataLake.py) notebook to the Setup directory in the workspace root
+    - Creates a small cluster
+        - Saves cluster id to config file
+    - Executes MountDataLake notebook to mount our three storage containers: `bronze`, `silver`, `gold`
 
