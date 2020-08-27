@@ -21,7 +21,7 @@ There are a number of key **assumptions** that I will make:
     - `silver` --- > `/mnt/datalake/<storage account name>/silver`
     - `gold` --- > `/mnt/datalake/<storage account name>/gold`
 
-- Under each of our mount points we will expect there to be three levels: solution, project, table. 
+- Under each of our mount points we will expect there to be three levels: **solution**, **project**, **table**. 
     - These levels allow for logical groupings of our data and allow the data lake to not only grow in depth but in width as more sources are added. 
 
 
@@ -34,7 +34,7 @@ Since our silver and gold layers are using Databricks Delta they will follow a s
 `/mnt/datalake/<storage account name>/silver/<database name>/<schema name>/<table name>`
 
 
-Please note that all Delta tables will be created as external Hive tables in the following format: `<database_name>__<schema name>.<table name> `. This will allow users to easily access data via the Databricks Database and the file system.  
+Please note that all Delta tables will be created as external Hive tables in the following format: `<solution>__<project>.<table> `. This will allow users to easily access data via the Databricks Database and the file system.  
 
 ## Notebooks Available
 
