@@ -193,6 +193,13 @@ dict_content = json.loads(data.content.decode('utf-8'))
 token = dict_content.get('token_value')
 print("This is the databricks token: {}".format(token))
 
+
+environment_variables['databricksToken'] = token
+# Save Databricks Token to Config File
+with open(config_path, 'w') as f:
+    json.dump(environment_variables, f)
+
+
 os.environ['databricksToken'] = token
 
 #### Creating our admin scope with secrets

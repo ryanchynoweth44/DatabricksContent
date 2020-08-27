@@ -3,21 +3,23 @@
 
 ## Deployment
 
-The deployment will complete the following:
-1. Create or use existing resource group
-1. Create a Databricks workspace
-1. Create an ADLS Gen2 storage account
-1. Create bronze, silver, and gold file systems
-1. Added the following secrets to the `AdminScope` Databricks scope.
-    - subscription_id 
-    - client_id 
-    - client_secret 
-    - tenant_id 
-    - resource_group_name 
-    - storageAccountName 
-    - databricksToken
 
-1. Importing the `MountDataLake.py` notebook and executing will automatically mount the containers to your databricks workspace. 
+1. Run the [Infrastructure Deployment Script](DeployDatabricks/Setup/InfrastructureDeploy.py) which will complete the following:
+    - Create or use existing resource group
+    - Create a Databricks workspace
+    - Create an ADLS Gen2 storage account
+    - Create bronze, silver, and gold file systems
+    - Added the following secrets to the `AdminScope` Databricks scope.
+        - subscription_id 
+        - client_id 
+        - client_secret 
+        - tenant_id 
+        - resource_group_name 
+        - storageAccountName 
+        - databricksToken
+
+    - Importing the `MountDataLake.py` notebook and executing will automatically mount the containers to your databricks workspace. 
+    - Note that this script will save your Databricks Token to the configuration file for future deployment processes
 
 
 
