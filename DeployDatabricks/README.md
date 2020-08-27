@@ -35,7 +35,7 @@ Since our silver and gold layers are using Databricks Delta they will follow a s
 
 
 
-Please note that all Delta tables will be created as external Hive tables in the following format: `<solution>__<project>.<table> `. This will allow users to easily access data via the Databricks Database and the file system.  This will allow users to easily access data via the Databricks Database and the file system. Please reference the following diagram for a high-level depiction of the solution.   
+Please note that all Delta tables will be created as external Hive tables in the following format: `<solution>__<project>_<gold or silver>.<table> `. This will allow users to easily access data via the Databricks Database and the file system.  This will allow users to easily access data via the Databricks Database and the file system. Please reference the following diagram for a high-level depiction of the solution.   
 <br></br>
 ![](imgs/DatabricksHighlevelDiagram.jpg)
 <br></br>
