@@ -34,7 +34,17 @@ Since our silver and gold layers are using Databricks Delta they will follow a s
 `/mnt/datalake/<storage account name>/silver/<database name>/<schema name>/<table name>`
 
 
-Please note that all Delta tables will be created as external Hive tables in the following format: `<database_name>__<schema name>.<table name> `. This will allow users to easily access data via the Databricks Database and the file system.  
+Additionally we will have all Delta tables in the silver and gold zones also be created as external Hive tables in the following format: `<database_name>__<schema name>.<table name> `. This will allow users to easily access data via the Databricks Database and the file system. Please reference the following diagram for a high-level depiction of the solution.   
+<br></br>
+![](imgs/DatabricksHighlevelDiagram.jpg)
+<br></br>
+
+
+Notice that it is possible for users to query the hive store directly outside of the Databricks workspace. A few tools that I have used in the past are: 
+- Power BI Desktop using the Spark connector  
+- Visual Studio Code using [Databricks Connect](https://pypi.org/project/databricks-connect/)
+    - Note users should be able to query the data lake directly as well.
+
 
 ## Notebooks Available
 
