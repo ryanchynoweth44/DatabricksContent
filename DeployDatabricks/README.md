@@ -35,7 +35,7 @@ Since our silver and gold layers are using Databricks Delta they will follow a s
 
 
 
-Please note that all Delta tables will be created as external Hive tables in the following format: `<solution>__<project>_<gold or silver>.<table> `. This will allow users to easily access data via the Databricks Database and the file system.  This will allow users to easily access data via the Databricks Database and the file system. Please reference the following diagram for a high-level depiction of the solution.   
+Please note that all Delta tables will be created as external Hive tables in the following format: `<solution>__<project>__<gold or silver>.<table> `. This will allow users to easily access data via the Databricks Database and the file system.  This will allow users to easily access data via the Databricks Database and the file system. Please reference the following diagram for a high-level depiction of the solution.   
 <br></br>
 ![](imgs/DatabricksHighlevelDiagram.jpg)
 <br></br>
@@ -57,9 +57,13 @@ Notebooks are organized into different folders depending on their purpose in the
 
 ### Admin Notebooks
 
-The following notebooks can be *manually* imported into a workspace and executed. 
+
+The following notebooks can be *manually* imported into a workspace and executed. Please note that any admin notebooks require delta tables will be organized using the `utility` solution. For example, our data collection notebooks will be located at: `/mnt/datalake/<storage account name>/silver/utility/data_collection/<table name>`
 - [CreateSecret.py](Admin/CreateSecret.py): a notebook that will put a secret in a secret scope. 
-- [CreateUtilityDatabase.py](Admin/CreateUtilityDatabase.py): a notebook that creates a utility_database in the hive metastore. This database will be used to capture various information about a Databricks workspace i.e. job run data. 
+- [CreateHiveDeltaTables.py](Admin/CreateHiveDeltaTables.py): scans gold and silver delta table directories and creates external hive tables in the Databricks Database - this is intended to run on a daily or weekly basis 
+- [ParallelTableOptimize.scala](Admin/ParallelTableOptimize.scala): this notebook lists all the databases in our Databricks Databases and runs a parallel optimize command over all the tables. Each database is executed sequentially, while tables are operated on in parallel. 
+    - NOTE: this original version of this notebook is **not** mine, I altered it very slightly. Reference to the individual who wrote this notebook is available upon request. 
+- [GetCompletedJobRunData.py](Admin/GetCompletedJobRunData.py): this notebook collects completed job run data from the Databricks REST API and saves the results to a Delta Table. Please note this is raw API data so analysis and further formatting may be required. Data is saved to `utility__data_collection__silver` hive table.  
 
 ### Setup Notebooks
 

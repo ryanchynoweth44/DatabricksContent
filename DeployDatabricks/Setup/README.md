@@ -65,5 +65,6 @@ Please execute the following steps in order to deploy a Databricks environment.
     - Imports the [`MountDataLake.py`](MountDataLake.py) notebook to the Setup directory in the workspace root
     - Creates a small cluster
         - Saves cluster id to config file
+        - Spark Version: `6.6.x-scala2.11`
     - Executes MountDataLake notebook to mount our three storage containers: `bronze`, `silver`, `gold`
 

@@ -42,6 +42,4 @@ for c in containers:
       else:
           raise e
 
-# COMMAND ----------
-
 
