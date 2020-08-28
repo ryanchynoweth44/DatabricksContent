@@ -49,7 +49,7 @@ payload = {
         "max_workers": 2
     },
     "cluster_name": "AdminCluster",
-    "spark_version": "latest-stable-scala2.11",
+    "spark_version": "6.6.x-scala2.11",
     "spark_conf": {
         "spark.databricks.repl.allowedLanguages": "sql,python,r",
         "spark.databricks.cluster.profile": "serverless",

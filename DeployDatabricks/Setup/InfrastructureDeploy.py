@@ -120,7 +120,6 @@ while not deployed:
 ### Connect to Azure storage 
 ## Get key and create file systems
 
-
 storage_client = StorageManagementClient(credentials, os.environ.get("subscription_id"))
 
 storage_keys = storage_client.storage_accounts.list_keys(os.environ.get("resource_group_name"), os.environ.get("storageAccountName"))
@@ -136,7 +135,6 @@ print("Creating file systems")
 datalake_client.create_file_system(file_system="bronze")
 datalake_client.create_file_system(file_system="silver")
 datalake_client.create_file_system(file_system="gold")
-
 
 
 #############################
@@ -225,5 +223,35 @@ for s in secrets_to_add:
     else :
         print(d.content.decode('utf-8'))
 
+
+
+
+
+#### Add service principal as Storage Blob Data Contributor to ADLS
+print("Adding service principal as Storage Blob Data Contributor in ADLS Gen2")
+
+auth_header = {'Authorization': 'Bearer {}'.format(azToken)}
+res = requests.get("https://management.azure.com/subscriptions/{}/providers/Microsoft.Authorization/roleDefinitions?$filter=roleName eq 'Storage Blob Data Contributor'&api-version=2018-01-01-preview".format(os.environ.get("subscription_id")), headers=auth_header)
+res.status_code
+d = json.loads(res.content.decode('utf-8'))
+
+
+
+scope = "subscriptions/{}/resourceGroups/{}/providers/Microsoft.Storage/storageAccounts/{}".format(os.environ.get("subscription_id"), os.environ.get("resource_group_name"), os.environ.get("storageAccountName"))
+
+
+auth_header['Content-Type'] = "application/json"
+url = "https://management.azure.com/{}/providers/Microsoft.Authorization/roleAssignments/{}?api-version=2018-01-01-preview".format(scope, d.get('value')[0].get('name'))
+
+body =     { "properties": {
+"roleDefinitionId": d.get('value')[0].get('id'),
+"principalId": os.environ.get("object_id")
+}}
+
+put_response = requests.put(url=url, json=body, headers=auth_header)
+if put_response.status_code == 201:
+    print("Added our service principal as Storage Blob Data Contributor in ADLS Gen2.")
+else :
+    print("FAILED to add service principal as Storage Blob Data Contributor in ADLS Gen2.")
 
 

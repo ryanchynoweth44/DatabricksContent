@@ -24,6 +24,7 @@ The `config_path` is the path to a json file that has the structure below. This 
     "subscription_id": "11111111-1111-1111-1111-111111111111",
     "client_id": "11111111-1111-1111-1111-111111111111", 
     "client_secret": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 
+    "object_id": "11111111-1111-1111-1111-111111111111",
     "tenant_id": "11111111-1111-1111-1111-111111111111",
     "resource_group_name": "rg1",
     "databricks_workspace_name": "dbrx1",
