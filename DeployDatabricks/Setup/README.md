@@ -58,6 +58,8 @@ Please execute the following steps in order to deploy a Databricks environment.
         - resource_group_name 
         - storageAccountName 
         - databricksToken
+    - Grants Storage Blob Data Contributor access to service principal
+        - This is the authentication used for Databricks to access containers
 
 1. Execute the [Run Mount Data Lake](RunMountDataLake.py) script which will complete the following:
     - Imports the [`MountDataLake.py`](MountDataLake.py) notebook to the Setup directory in the workspace root
