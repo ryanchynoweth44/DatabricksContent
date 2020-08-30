@@ -26,7 +26,7 @@ completed_job_run_cluster_info_path = "/mnt/datalake/{}/gold/utility/data_collec
 completed_job_run_schedule_path = "/mnt/datalake/{}/gold/utility/data_collection/completed_job_run_schedule_info".format(storage_account_name)
 completed_job_run_state_path = "/mnt/datalake/{}/gold/utility/data_collection/completed_job_run_state_info".format(storage_account_name)
 completed_job_run_task_path = "/mnt/datalake/{}/gold/utility/data_collection/completed_job_run_task_info".format(storage_account_name)
-completed_job_run_path = "/mnt/datalake/{}/gold/utility/data_collection/completed_job_run_task_info".format(storage_account_name)
+completed_job_run_path = "/mnt/datalake/{}/gold/utility/data_collection/completed_job_run_info".format(storage_account_name)
 
 # COMMAND ----------
 
