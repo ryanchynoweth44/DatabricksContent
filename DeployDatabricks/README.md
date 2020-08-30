@@ -64,6 +64,7 @@ The following notebooks can be *manually* imported into a workspace and executed
 - [ParallelTableOptimize.scala](Admin/ParallelTableOptimize.scala): this notebook lists all the databases in our Databricks Databases and runs a parallel optimize command over all the tables. Each database is executed sequentially, while tables are operated on in parallel. 
     - NOTE: this original version of this notebook is **not** mine, I altered it very slightly. Reference to the individual who wrote this notebook is available upon request. 
 - [GetCompletedJobRunData.py](Admin/GetCompletedJobRunData.py): this notebook collects completed job run data from the Databricks REST API and saves the results to a Delta Table. Please note this is raw API data so analysis and further formatting may be required. Data is saved to `utility__data_collection__silver` hive table.  
+- [ParseJobRunData.py](Admin/ParseJobRunData.py): this notebook parses the silver job run data into 5 separate tables: cluster info, schedule info, state info, task info, and job run info. The structure of the tables largely depends on the arrays from the REST API source data. Currently supports completed only jobs. This notebook utilizes Delta streaming capabilities, therefore, can be executed continuously or as a batch via the `.trigger(once=True)` argument.  
 
 ### Setup Notebooks
 

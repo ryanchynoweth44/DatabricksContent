@@ -8,8 +8,8 @@
 # COMMAND ----------
 
 from delta.tables import *
-from multiprocessing.pool import ThreadPool
-pool = ThreadPool(multiprocessing.cpu_count())
+import multiprocessing
+pool = multiprocessing.pool.ThreadPool(multiprocessing.cpu_count())
 
 # COMMAND ----------
 
