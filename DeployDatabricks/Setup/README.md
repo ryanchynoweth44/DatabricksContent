@@ -40,6 +40,10 @@ Please note the following:
 - I recommend a databricks_sku of "premium" 
 
 
+NOTE: Please use the object id from the Enterprise Application tab not the Registered Application tab.  
+
+![](../imgs/ObjectIds.jpg)
+
 
 ## Deployment
 

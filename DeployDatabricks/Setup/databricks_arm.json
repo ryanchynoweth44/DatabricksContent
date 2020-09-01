@@ -2,9 +2,22 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "variables": {
-        "managedResourceGroupName": ""
+        "managedResourceGroupName": "",
+        "usersManagedResourceGroupName": ""
     },
     "resources": [
+        {
+            "type": "Microsoft.Databricks/workspaces",
+            "name": "",
+            "location": "",
+            "apiVersion": "2018-04-01",
+            "sku": {
+                "name": ""
+            },
+            "properties": {
+                "ManagedResourceGroupId": "[concat(subscription().id, '/resourceGroups/', variables('managedResourceGroupName'))]"
+            }
+        },
         {
             "type": "Microsoft.Databricks/workspaces",
             "name": "",
@@ -41,11 +54,5 @@
             "kind": "['StorageV2']",
             "tags": {}
         }
-    ],
-    "outputs": {
-        "workspace": {
-            "type": "object",
-            "value": ""
-        }
-    }
+    ]
 }

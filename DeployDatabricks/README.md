@@ -35,7 +35,7 @@ Since our silver and gold layers are using Databricks Delta they will follow a s
 
 
 
-Please note that all Delta tables will be created as external Hive tables in the following format: `<solution>__<project>__<gold or silver>.<table> `. This will allow users to easily access data via the Databricks Database and the file system.  This will allow users to easily access data via the Databricks Database and the file system. Please reference the following diagram for a high-level depiction of the solution.   
+Please note that all Delta tables will be created as external Hive tables in the following format: `<solution>__<project>__<gold or silver>.<table> `. This will allow users to easily access data via the Databricks Database and the file system.  This will allow users to easily access data via the Databricks Database and the file system. Please reference the following diagram for a high-level depiction of the solution.   Notice that we deploy two Databricks workspaces, the Admin workspace is purposed for your big data team that creates jobs and manages production data processes. The analytics workspace gives users of the delta lake read access to the silver and gold tables, and contributor access to a sandbox environment. The analytics workspaces enables user experimentation without interfering with production data pipelines.   
 <br></br>
 ![](imgs/DatabricksHighlevelDiagram.jpg)
 <br></br>
