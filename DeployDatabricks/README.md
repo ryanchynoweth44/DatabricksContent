@@ -71,3 +71,13 @@ The following notebooks can be *manually* imported into a workspace and executed
 Please reference the [Setup README](Setup). 
 
 
+
+### Roadmap
+
+Additional notebooks will be created to do the following:
+- Additions to add running jobs to data collection using the `2.0/jobs/runs/list` endpoint. We will then track each active run using the `2.0/jobs/runs/get` endpoint so that it is removed from the table once it is completed. 
+- Auto Refreshing our Databricks token that is stored in the secret scope. 
+- Group management
+- Scheduled jobs data i.e. which jobs are scheduled, status etc. 
+- Adding a second databricks workspace for "users" - this requires a second service principal that gives read access to `silver/gold` but read/write access to a `sandbox` container. 
+- Dashboard based on out of the box data. 
