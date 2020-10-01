@@ -89,16 +89,20 @@ if not existing_rg:
     print("Creating resource group.")
     res = client.resource_groups.create_or_update(os.environ.get("resource_group_name"), {'location': region})
 
-
-
+cnt = 0
 deployed = False
 while not deployed:
     rgs = client.resource_groups.list()
     for r in rgs:
         if r.name == os.environ.get("resource_group_name"):
-            deployed = True
+            deployed = True if a.properties.provisioning_state == 'Succeeded' else False
             print("Resource Group Deployed. ")
-    time.sleep(20)
+    time.sleep(10)
+    cnt+=1
+    if cnt > 3:
+        print("Unable to deploy resource group. ")
+        sys.exit(1)
+
 
 
 
