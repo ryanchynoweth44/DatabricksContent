@@ -27,7 +27,7 @@ Below is a common infrastructure diagram I implement with my customers. If strea
 1. In addition to writing to raw storage, Databricks will be used to cleanse data as needed and stream appropriately to an application database, Power BI, or use [Databricks Delta](https://docs.databricks.com/delta/index.html) for real-time insights, consumption, and intelligent automated actions. Please note that applications can read directly off an Event Hub as a consumer as well. 
 1. Then use Azure Databricks to train a machine learning or deep learning model that can be used to make streaming or batch predictions. 
 
-![](imgs/Streaming%20Data.png)
+    ![](imgs/StreamingData.png)
 
 ### Tips to Actually Implement a Solution
 When implementing new intelligent solutions with cloud infrastructure, it is likely that it will require internal business stakeholder buy in. Therefore, in order to successfully implement a new predictive analytics solution you must:
