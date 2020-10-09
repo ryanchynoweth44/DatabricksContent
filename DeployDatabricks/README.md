@@ -35,16 +35,15 @@ Since our silver and gold layers are using Databricks Delta they will follow a s
 
 
 
-Please note that all Delta tables will be created as external Hive tables in the following format: `<solution>__<project>__<gold or silver>.<table> `. This will allow users to easily access data via the Databricks Database and the file system.  This will allow users to easily access data via the Databricks Database and the file system. Please reference the following diagram for a high-level depiction of the solution.   Notice that we deploy two Databricks workspaces, the Admin workspace is purposed for your big data team that creates jobs and manages production data processes. The analytics workspace gives users of the delta lake read access to the silver and gold tables, and contributor access to a sandbox environment. The analytics workspaces enables user experimentation without interfering with production data pipelines.   
+Please note that all Delta tables will be created as external Hive tables in the following format: `<solution>__<project>__<gold or silver>.<table> `. This will allow users to easily access data via the Databricks Database and the file system.  This will allow users to easily access data via the Databricks Database and the file system. Please reference the following diagram for a high-level depiction of the solution.      
 <br></br>
 ![](imgs/DatabricksHighlevelDiagram.jpg)
 <br></br>
 
 
-Notice that it is possible for users to query the hive store directly outside of the Databricks workspace. A few tools that I have used in the past are: 
-- Power BI Desktop using the Spark connector  
-- Visual Studio Code using [Databricks Connect](https://pypi.org/project/databricks-connect/)
-    - Note users should be able to query the data lake directly as well.
+Notice that we deploy two Databricks workspaces, the Admin workspace is purposed for your big data team that creates jobs, manages production data processes, and has the ability to read/write accross the entire data lake. The analytics workspace gives analyst users that use the delta lake read access to the silver and gold tables, and contributor access to a sandbox environment. The analytics workspaces enables user experimentation without interfering with production data pipelines. Currently, the Analytics Workspace uses shared mounts for data access but Databricks does have the ability to use [passthrough authentication](https://docs.microsoft.com/en-us/azure/databricks/security/credential-passthrough/adls-passthrough) on Azure Data Lake Store, however, there are some [limitations](https://docs.microsoft.com/en-us/azure/databricks/security/credential-passthrough/adls-passthrough#limitations) surrounding that feature therefore, it should only be used if required. 
+
+For example, passthrough authentication on a standard cluster can only support one user at a time and standard clusters are the only clusters that can interactively execute scala commands. Which means there is no sharing compute if your data team writes code in scala. Note - this is not the case with high concurrency clusters (SQL, R, and Python).  
 
 ## Notebooks Available
 
@@ -79,5 +78,4 @@ Additional notebooks will be created to do the following:
 - Auto Refreshing our Databricks token that is stored in the secret scope. 
 - Group management
 - Scheduled jobs data i.e. which jobs are scheduled, status etc. 
-- Adding a second databricks workspace for "users" - this requires a second service principal that gives read access to `silver/gold` but read/write access to a `sandbox` container. 
 - Dashboard based on out of the box data. 
