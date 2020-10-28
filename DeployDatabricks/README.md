@@ -16,22 +16,18 @@ There are a number of key **assumptions** that I will make:
             - In some scenarios it could mean splitting the bronze datasets into multiple silver tables. 
         - `gold`: business data layer used to support solutions. Note, we leverage the silver layer as our source data to apply business logic and transformations to support specific business needs. We will assume this uses Databricks Delta.
 
-- Each of the containers will be mounted to our Databricks workspace using the following format: 
-    - `bronze` --- > `/mnt/datalake/<storage account name>/bronze`
-    - `silver` --- > `/mnt/datalake/<storage account name>/silver`
-    - `gold` --- > `/mnt/datalake/<storage account name>/gold`
 
-- Under each of our mount points we will expect there to be three levels: **solution**, **project**, **table**. 
+- Under each of our containers we will expect there to be three levels: **solution**, **project**, **table**. 
     - These levels allow for logical groupings of our data and allow the data lake to not only grow in depth but in width as more sources are added. 
 
 
 Using the assumptions made here let's provide and example. Assume you are moving data from a Microsoft SQL Server to a data lake. The bronze layer may contain any file format json, parquet, csv etc. Since our source system is a relational database let's assume we are using parquet files that are being uploaded on a daily basis. Since we are only getting data on a daily basis we will land our data into folders organized by year and simply add a datetime to our file name. Our bronze layer would likely take the form: 
 
-`/mnt/datalake/<storage account name>/bronze/<database name>/<schema name>/<table name>/2020/<table_name>_YYYYMMDDHHmmss.parquet`
+`<storage account name>/bronze/<database name>/<schema name>/<table name>/2020/<table_name>_YYYYMMDDHHmmss.parquet`
 
 Since our silver and gold layers are using Databricks Delta they will follow a similar format, excluding the year directory.
 
-`/mnt/datalake/<storage account name>/silver/<database name>/<schema name>/<table name>`
+`<storage account name>/silver/<database name>/<schema name>/<table name>`
 
 
 
@@ -41,9 +37,11 @@ Please note that all Delta tables will be created as external Hive tables in the
 <br></br>
 
 
-Notice that we deploy two Databricks workspaces, the Admin workspace is purposed for your big data team that creates jobs, manages production data processes, and has the ability to read/write accross the entire data lake. The analytics workspace gives analyst users that use the delta lake read access to the silver and gold tables, and contributor access to a sandbox environment. The analytics workspaces enables user experimentation without interfering with production data pipelines. Currently, the Analytics Workspace uses shared mounts for data access but Databricks does have the ability to use [passthrough authentication](https://docs.microsoft.com/en-us/azure/databricks/security/credential-passthrough/adls-passthrough) on Azure Data Lake Store, however, there are some [limitations](https://docs.microsoft.com/en-us/azure/databricks/security/credential-passthrough/adls-passthrough#limitations) surrounding that feature therefore, it should only be used if required. 
+Notice that we deploy one Databricks workspaces that leverages [passthrough authentication](https://docs.microsoft.com/en-us/azure/databricks/security/credential-passthrough/adls-passthrough) on Azure Data Lake Store, please note that there are some [limitations](https://docs.microsoft.com/en-us/azure/databricks/security/credential-passthrough/adls-passthrough#limitations).  
 
 For example, passthrough authentication on a standard cluster can only support one user at a time and standard clusters are the only clusters that can interactively execute scala commands. Which means there is no sharing compute if your data team writes code in scala. Note - this is not the case with high concurrency clusters (SQL, R, and Python).  
+
+Recommendation -> Databricks mounts make it easy to access data in ADLS Gen2, but since mount access is global all users will have the same access. If mounts are implemented organizations should deploy two workspaces, one that has READ/WRITE ability and another with READ only access. 
 
 ## Notebooks Available
 
@@ -56,6 +54,7 @@ Notebooks are organized into different folders depending on their purpose in the
 
 ### Admin Notebooks
 
+**NOTE:  current notebooks are executed using a mount point. This will be edited in the future since we are using passthrough authentication.
 
 The following notebooks can be *manually* imported into a workspace and executed. Please note that any admin notebooks require delta tables will be organized using the `utility` solution. For example, our data collection notebooks will be located at: `/mnt/datalake/<storage account name>/silver/utility/data_collection/<table name>`
 - [CreateSecret.py](Admin/CreateSecret.py): a notebook that will put a secret in a secret scope. 
