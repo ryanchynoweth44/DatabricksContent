@@ -87,3 +87,7 @@ Below are a number of link with quick descriptions on what they cover.
 
 ## Contact
 Please feel free to recommend demos or contact me if there are any confusing/broken steps. For any additional comments or questions email me at ryanachynoweth@gmail.com. 
+
+## Disclaimer
+
+These examples are not affiliated or purposed to be official documentation for Databricks. For official documentation and tutorials please go to the [Databricks Academy](https://academy.databricks.com/) or the company [blog](https://databricks.com/blog)
