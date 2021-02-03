@@ -4,14 +4,6 @@ This repository aims to provide various Databricks tutorials and demos.
 
 If you would like to follow along, check out the [Databricks Community Cloud](https://community.cloud.databricks.com/).
 
-## Databricks Deployment
-
-In all of my Databricks and Data Lake projects there are common themes and functions that are consistent. In an effort to streamline my own projects and provide assistance to clients I am creating a repository of notebooks and scripts that can be used to configure, maintain, and leverage Azure Databricks at an enterprise level. 
-
-For assistance in automating you Databricks deployment and adoption reference my [DeployDatabricks](DeployDatabricks) directory.  
-
-
-
 ## Demos
 
 ### Stream Databricks Example
@@ -25,13 +17,13 @@ The demo is broken into logic sections using the [New York City Taxi Tips](https
 
 ### Databricks Delta 
 The demo is broken into logic sections. Please complete in the following order:  
-1. [Setup Environment](./delta_lake/Docs/01_CreateEnironment.md)
-1. [Data Ingestion](./delta_lake/Docs/02_SetupDataIngestion.md)
-1. [Bronze Data to Silver Data](./delta_lake/Docs/03_BronzeToSilver.md)
-1. [A quick ML Model](./delta_lake/Docs/04_MachineLearningWithDeltaLake.md)
-1. [Silver Data To Gold Data](./delta_lake/Docs/05_SilverToGold.md)
-1. [A Few Cool Features of Delta](./delta_lake/Docs/06_DeltaFeatures.md)
-1. [Summary](./delta_lake/Docs/07_Summary.md)
+1. [Setup Environment](./delta_lake_intro/Docs/01_CreateEnironment.md)
+1. [Data Ingestion](./delta_lake_intro/Docs/02_SetupDataIngestion.md)
+1. [Bronze Data to Silver Data](./delta_lake_intro/Docs/03_BronzeToSilver.md)
+1. [A quick ML Model](./delta_lake_intro/Docs/04_MachineLearningWithDeltaLake.md)
+1. [Silver Data To Gold Data](./delta_lake_intro/Docs/05_SilverToGold.md)
+1. [A Few Cool Features of Delta](./delta_lake_intro/Docs/06_DeltaFeatures.md)
+1. [Summary](./delta_lake_intro/Docs/07_Summary.md)
 
 
 ### Programmatically Generate a Databricks Access Token
@@ -60,7 +52,7 @@ An example of using the Autoloader capabilities for file-based processing. Ensur
 1. [README](./databricks_autoloader)
 
 
-## Random Resources
+## Resources
 
 In this directory I keep a central repository of articles written and helpful resource links with short descriptions. 
 
@@ -90,4 +82,4 @@ Please feel free to recommend demos or contact me if there are any confusing/bro
 
 ## Disclaimer
 
-These examples are not affiliated or purposed to be official documentation for Databricks. For official documentation and tutorials please go to the [Databricks Academy](https://academy.databricks.com/) or the company [blog](https://databricks.com/blog)
+These examples are not affiliated or purposed to be official documentation for Databricks. For official documentation and tutorials please go to the [Databricks Academy](https://academy.databricks.com/) or the Databricks [blog](https://databricks.com/blog)
