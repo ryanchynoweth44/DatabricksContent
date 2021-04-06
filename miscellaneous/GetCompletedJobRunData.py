@@ -1,9 +1,16 @@
 # Databricks notebook source
-## 
-## This notebook collects completed job run data from the Databricks 2.0/jobs/runs/list API
-## We save all completed runs to the utility__data_collection__silver.completed_job_runs table 
-## NOTE - this notebook simply collects the data, therefore, parsing and analyzing data should be done in separate processes  
-## 
+# MAGIC %md
+# MAGIC # Get Completed Job Runs Data
+# MAGIC 
+# MAGIC **Author**: Ryan Chynoweth, [ryan.chynoweth@databricks.com](mailto:ryan.chynoweth@databricks.com)
+# MAGIC 
+# MAGIC This notebook collects only the completed runs of jobs from the [Runs List endpoint](https://docs.databricks.com/dev-tools/api/latest/jobs.html#runs-list) of a Databricks workspace and saves the data to a delta table. 
+# MAGIC 
+# MAGIC The notebook can be run in batch more or continuously. 
+# MAGIC 
+# MAGIC Please note that `run_id` is a unique ID for all runs of all jobs within a workspace. 
+# MAGIC 
+# MAGIC The values in command 3 must be configured per implementation, and the delta table will be registered in the `default` Hive Metastore so please change the database if you wish to store it in a different one. 
 
 # COMMAND ----------
 
@@ -15,55 +22,38 @@ from delta.tables import *
 
 # COMMAND ----------
 
+# secret values
 scope_name = "AdminScope"
 storage_account_name = dbutils.secrets.get(scope_name,"storageAccountName")
-
-# COMMAND ----------
+databricks_token = dbutils.secrets.get(scope_name, "databricksToken")
 
 # if set to false then this notebook will stop executing after it loads all completed runs
 run_continuously = False # if True this notebook will run forever  
 reset_table = False # to reset the delta table
-DeltaLocation = "/mnt/datalake/{}/silver/utility/data_collection/completed_job_runs".format(storage_account_name)
+delta_location = "/mnt/datalake/{}/delta/data_collection/completed_job_runs".format(storage_account_name) ## storage location for the table
+databricks_instance = "" # i.e. "eastus2.azuredatabricks.net"
+database = "default"
 
 # COMMAND ----------
 
-if reset_table: 
-  print("Deleting Table.")
-  dbutils.fs.rm(DeltaLocation, True)
-  spark.sql("DROP TABLE IF EXISTS utility__data_collection__silver.completed_job_runs")
+spark.sql("USE DATABASE {}".format(database))
 
 # COMMAND ----------
 
 # check to see if our table exists
-table_list=spark.sql("""show tables in utility__data_collection__silver""")
-table_name=table_list.filter(table_list.tableName=="completed_jobs").collect()
-existing_table = True
-last_run_id = 1
-if len(table_name)==0:
-  existing_table = False
-  print("The Table 'utility__data_collection__silver.completed_job_runs' does not exist.")
+last_run_id = 0
+existing_table = DeltaTable.isDeltaTable(spark, delta_location)
 
 # COMMAND ----------
 
 # get the latest run_id saved to our table
 if existing_table:
-  last_run_id = spark.sql("select max(run_id) from utility__data_collection__silver.completed_job_runs").collect()[0][0]
-
-# COMMAND ----------
-
-# get workspace url for api
-context = json.loads(dbutils.notebook.entry_point.getDbutils().notebook().getContext().toJson())
-databricks_instance = context.get('tags').get('browserHostName')
-
-# COMMAND ----------
-
-# token for authentication
-DatabricksToken = dbutils.secrets.get("DeploymentScope", "DatabricksToken")
+  last_run_id = spark.sql("select max(run_id) from completed_job_runs").collect()[0][0]
 
 # COMMAND ----------
 
 # headers for request
-dbricks_auth = {"Authorization": "Bearer {}".format(DatabricksToken)}
+dbricks_auth = {"Authorization": "Bearer {}".format(databricks_token)}
 
 # COMMAND ----------
 
@@ -87,7 +77,7 @@ def save_data(data):
   else :
     print("Creating Delta Table")
     df.write.format("delta").save(DeltaLocation)
-    spark.sql("CREATE TABLE IF NOT EXISTS utility__data_collection__silver.completed_job_runs USING DELTA LOCATION '{}'".format(DeltaLocation))
+    spark.sql("CREATE TABLE IF NOT EXISTS completed_job_runs USING DELTA LOCATION '{}'".format(DeltaLocation))
   
   return ids # return the batch run_ids
 
@@ -108,7 +98,7 @@ while True:
     break
   # if there is more data or we run forever then take a rest
   elif (data.get('has_more') == False and run_continuously) or (last_run_id in run_ids and run_continuously):
-    last_run_id = spark.sql("select max(run_id) from utility__data_collection__silver.completed_job_runs").collect()[0][0]
+    last_run_id = spark.sql("select max(run_id) from completed_job_runs").collect()[0][0]
     run_offset = 0 # reset our offset
     print("Sleeping for 30 seconds. Setting last_run_id to: {}".format(last_run_id))
     time.sleep(30) ## sleep for 30 seconds if we have no data left  
