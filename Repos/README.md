@@ -23,5 +23,5 @@ The [Repos API](https://docs.databricks.com/dev-tools/api/latest/repos.html) is 
 
 ### Examples
 
-1. [Programmatically update](./UpdateDatabricksRepoAPI.py) a Databricks Repo via the REST API
-  - This is an excellent way to handle deployments within a CICD pipelines 
+1. [Programmatically update](./UpdateDatabricksRepoAPI.py) a Databricks Repo via the REST API  
+    - This is an excellent way to handle deployments within a CICD pipelines 
