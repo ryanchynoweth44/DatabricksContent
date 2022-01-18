@@ -16,8 +16,7 @@ The [Repos API](https://docs.databricks.com/dev-tools/api/latest/repos.html) is 
 1. [Create Repo](https://docs.databricks.com/dev-tools/api/latest/repos.html#operation/create-repo)  
 1. [Get a Repo](https://docs.databricks.com/dev-tools/api/latest/repos.html#operation/get-repo): gets a given repository by id  
 1. [Update Repo](https://docs.databricks.com/dev-tools/api/latest/repos.html#operation/update-repo): this allows users to update a repository to a given branch or tag.  
-    - Need to test if it will pull changes if the branch doesn't change. This isn't an issue because you could create release branches associated to builds.  
-    - We will use this in our CI/CD script
+    - If the repo is the same as the current repo then it will simply pull the latest changes. 
 1. [Delete Repo](https://docs.databricks.com/dev-tools/api/latest/repos.html#operation/delete-repo)  
 
 
