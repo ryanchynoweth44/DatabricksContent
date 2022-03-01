@@ -16,7 +16,7 @@ The [Repos API](https://docs.databricks.com/dev-tools/api/latest/repos.html) is 
 1. [Create Repo](https://docs.databricks.com/dev-tools/api/latest/repos.html#operation/create-repo)  
 1. [Get a Repo](https://docs.databricks.com/dev-tools/api/latest/repos.html#operation/get-repo): gets a given repository by id  
 1. [Update Repo](https://docs.databricks.com/dev-tools/api/latest/repos.html#operation/update-repo): this allows users to update a repository to a given branch or tag.  
-    - If the repo is the same as the current repo then it will simply pull the latest changes. 
+    - If the branch you want to update to is the same as the current branch then it will simply pull the latest changes. 
 1. [Delete Repo](https://docs.databricks.com/dev-tools/api/latest/repos.html#operation/delete-repo)  
 
 
