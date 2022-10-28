@@ -1,0 +1,87 @@
+{
+    "job_id": 476522267517512,
+    "new_settings": {
+        "name": "AzureDevOpsDemo",
+        "email_notifications": {
+            "no_alert_for_skipped_runs": false
+        },
+        "timeout_seconds": 0,
+        "max_concurrent_runs": 1,
+        "tasks": [
+            {
+                "task_key": "AzureDevOpsDemo_IngestData",
+                "notebook_task": {
+                    "notebook_path": "/Repos/rac_demo_folder/DevOpsDemo/Lakehouse/1_Ingest_and_ETL"
+                },
+                "job_cluster_key": "Shared_job_cluster",
+                "timeout_seconds": 0,
+                "email_notifications": {}
+            },
+            {
+                "task_key": "AzureDevOpsDemo_TrainModel",
+                "depends_on": [
+                    {
+                        "task_key": "AzureDevOpsDemo_IngestData"
+                    }
+                ],
+                "notebook_task": {
+                    "notebook_path": "/Repos/rac_demo_folder/DevOpsDemo/Lakehouse/2_MachineLearningExample"
+                },
+                "job_cluster_key": "Shared_job_cluster",
+                "timeout_seconds": 0,
+                "email_notifications": {}
+            },
+            {
+                "task_key": "AzureDevOpsDemo_BIReporting",
+                "depends_on": [
+                    {
+                        "task_key": "AzureDevOpsDemo_TrainModel"
+                    }
+                ],
+                "notebook_task": {
+                    "notebook_path": "/Repos/rac_demo_folder/DevOpsDemo/Lakehouse/3_BI_Reporting"
+                },
+                "job_cluster_key": "Shared_job_cluster",
+                "timeout_seconds": 0,
+                "email_notifications": {}
+            },
+            {
+                "task_key": "Adding_A_Job_Task",
+                "depends_on": [
+                    {
+                        "task_key": "AzureDevOpsDemo_BIReporting"
+                    }
+                ],
+                "notebook_task": {
+                    "notebook_path": "/Repos/rac_demo_folder/DevOpsDemo/Lakehouse/d"
+                },
+                "job_cluster_key": "Shared_job_cluster",
+                "timeout_seconds": 0,
+                "email_notifications": {}
+            }
+        ],
+        "job_clusters": [
+            {
+                "job_cluster_key": "Shared_job_cluster",
+                "new_cluster": {
+                    "spark_version": "10.4.x-cpu-ml-scala2.12",
+                    "spark_conf": {
+                        "spark.databricks.delta.preview.enabled": "true"
+                    },
+                    "node_type_id": "Standard_DS3_v2",
+                    "spark_env_vars": {
+                        "PYSPARK_PYTHON": "/databricks/python3/bin/python3"
+                    },
+                    "enable_elastic_disk": true,
+                    "azure_attributes": {
+                        "first_on_demand": 1,
+                        "availability": "ON_DEMAND_AZURE",
+                        "spot_bid_max_price": -1
+                    },
+                    "num_workers": 8
+                }
+            }
+        ],
+        "format": "MULTI_TASK"
+    }
+}
